@@ -122,9 +122,6 @@ const PostJobPage = () => {
                 <div className="container mx-auto px-4 py-16">
                     <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-6">
                         <div className="relative">
-                            <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center shadow-lg">
-                                <Plus className="w-10 h-10 text-white" />
-                            </div>
                             <Loader2 className="absolute -top-2 -right-2 w-8 h-8 text-blue-600 animate-spin" />
                         </div>
                         <div className="text-center">
