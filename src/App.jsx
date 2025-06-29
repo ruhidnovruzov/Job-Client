@@ -15,7 +15,7 @@ import JobDetailPage from './pages/JobDetailPage';
 import ApplicantDashboardPage from './pages/ApplicantDashboardPage';
 import ApplicantsPage from './pages/ApplicantsPage';
 import ApplicantDetailPage from './pages/ApplicantDetailPage';
-import AdminDashboardPage from './pages/admin/AdminDashboardPage';
+import AdminDashboardPage from './pages/Admin/AdminDashboardPage';
 import CompanyDashboard from './pages/Company/CompanyDashboard';
 import EditJob from './pages/Company/EditJob';
 function App() {
