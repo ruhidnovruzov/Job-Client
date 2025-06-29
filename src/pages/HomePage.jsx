@@ -30,7 +30,7 @@ const HomePage = () => {
             Object.entries(filters).forEach(([key, value]) => {
                 if (value) params.append(key, value);
             });
-            const res = await axios.get(`http://192.168.100.52:5000/api/jobs?${params.toString()}`);
+            const res = await axios.get(`https://job-server-tcq9.onrender.com/api/jobs?${params.toString()}`);
             setJobs(res.data.data);
         } catch (err) {
             setError(err.response?.data?.message || 'İş elanları yüklənə bilmədi.');
