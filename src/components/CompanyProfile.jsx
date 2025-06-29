@@ -14,7 +14,7 @@ const CompanyProfile = ({
 }) => {
     const defaultLogo = 'https://via.placeholder.com/150';
     const logoImageUrl = profile?.logoUrl && profile.logoUrl !== defaultLogo
-        ? `http://192.168.100.52:5000${profile.logoUrl}`
+        ? `https://job-server-tcq9.onrender.com${profile.logoUrl}`
         : defaultLogo;
 
     return (

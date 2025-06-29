@@ -33,7 +33,7 @@ const CategoryManagement = () => {
     try {
       setLoading(true);
       setError('');
-      const res = await axios.get('http://192.168.100.52:5000/api/categories');
+      const res = await axios.get('https://job-server-tcq9.onrender.com/api/categories');
       setCategories(res.data.data);
     } catch (err) {
       console.error('Kateqoriyalar gətirilərkən xəta:', err);
@@ -59,7 +59,7 @@ const CategoryManagement = () => {
       };
 
       const res = await axios.post(
-        'http://192.168.100.52:5000/api/categories',
+        'https://job-server-tcq9.onrender.com/api/categories',
         { name: newCategoryName.trim() },
         config
       );
@@ -85,7 +85,7 @@ const CategoryManagement = () => {
         },
       };
 
-      await axios.delete(`http://192.168.100.52:5000/api/categories/${categoryId}`, config);
+      await axios.delete(`https://job-server-tcq9.onrender.com/api/categories/${categoryId}`, config);
       setCategories(categories.filter(cat => cat._id !== categoryId));
       setDeleteConfirm(null);
       setMessage('Kateqoriya uğurla silindi!');
@@ -168,8 +168,8 @@ const CategoryManagement = () => {
             type="submit"
             disabled={isAdding || !newCategoryName.trim()}
             className={`px-6 py-3 rounded-xl font-semibold transition-all duration-200 flex items-center space-x-2 ${isAdding || !newCategoryName.trim()
-                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                : 'bg-gradient-to-r from-pink-600 to-rose-600 text-white hover:from-pink-700 hover:to-rose-700 transform hover:scale-105 shadow-lg'
+              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              : 'bg-gradient-to-r from-pink-600 to-rose-600 text-white hover:from-pink-700 hover:to-rose-700 transform hover:scale-105 shadow-lg'
               }`}
           >
             {isAdding ? (

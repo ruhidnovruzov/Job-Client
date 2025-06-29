@@ -2,28 +2,28 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { 
-  User, 
-  Mail, 
-  Phone, 
-  Award, 
-  GraduationCap, 
-  Briefcase, 
-  Download, 
-  Edit3, 
-  Save, 
-  X, 
-  Plus, 
-  Trash2, 
-  Calendar, 
-  Building2, 
-  Target, 
-  Zap,
-  FileText,
-  Camera,
-  Loader2,
-  AlertCircle,
-  CheckCircle
+import {
+    User,
+    Mail,
+    Phone,
+    Award,
+    GraduationCap,
+    Briefcase,
+    Download,
+    Edit3,
+    Save,
+    X,
+    Plus,
+    Trash2,
+    Calendar,
+    Building2,
+    Target,
+    Zap,
+    FileText,
+    Camera,
+    Loader2,
+    AlertCircle,
+    CheckCircle
 } from 'lucide-react';
 
 const ApplicantDashboardPage = () => {
@@ -91,7 +91,7 @@ const ApplicantDashboardPage = () => {
                     Authorization: `Bearer ${user.token}`,
                 },
             };
-            const res = await axios.get('http://192.168.100.52:5000/api/applicants/me', config);
+            const res = await axios.get('https://job-server-tcq9.onrender.com/api/applicants/me', config);
             setProfile(res.data.data);
             setEditFormData({
                 firstName: res.data.data.firstName || '',
@@ -115,7 +115,7 @@ const ApplicantDashboardPage = () => {
 
     const fetchCategories = async () => {
         try {
-            const res = await axios.get('http://192.168.100.52:5000/api/categories');
+            const res = await axios.get('https://job-server-tcq9.onrender.com/api/categories');
             setCategories(res.data.data);
         } catch (err) {
             console.error('Kateqoriyalar gətirilərkən xəta:', err);
@@ -217,7 +217,7 @@ const ApplicantDashboardPage = () => {
             };
 
             const formData = new FormData();
-            
+
             // Basic fields
             formData.append('firstName', editFormData.firstName);
             formData.append('lastName', editFormData.lastName);
@@ -225,7 +225,7 @@ const ApplicantDashboardPage = () => {
             formData.append('category', editFormData.category);
             formData.append('yearsOfExperience', editFormData.yearsOfExperience);
             formData.append('about', editFormData.about);
-            
+
             // Complex fields as JSON strings
             formData.append('skills', JSON.stringify(editFormData.skills));
             formData.append('education', JSON.stringify(editFormData.education));
@@ -238,7 +238,7 @@ const ApplicantDashboardPage = () => {
                 formData.append('profilePicture', selectedProfilePictureFile);
             }
 
-            const res = await axios.put('http://192.168.100.52:5000/api/applicants/profile', formData, config);
+            const res = await axios.put('https://job-server-tcq9.onrender.com/api/applicants/profile', formData, config);
             setMessage(res.data.message);
             setProfile(res.data.data);
             setSelectedResumeFile(null);
@@ -291,8 +291,8 @@ const ApplicantDashboardPage = () => {
     }
 
     const defaultProfilePicture = 'https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png';
-    const profileImageUrl = profile?.profilePicture 
-        ? `http://192.168.100.52:5000${profile.profilePicture}` 
+    const profileImageUrl = profile?.profilePicture
+        ? `https://job-server-tcq9.onrender.com${profile.profilePicture}`
         : defaultProfilePicture;
 
     return (
@@ -407,7 +407,7 @@ const ApplicantDashboardPage = () => {
                                         {profile?.resume && (
                                             <div className="pt-4">
                                                 <a
-                                                    href={`http://192.168.100.52:5000${profile.resume}`}
+                                                    href={`https://job-server-tcq9.onrender.com${profile.resume}`}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
@@ -458,8 +458,8 @@ const ApplicantDashboardPage = () => {
                                         </h3>
                                         <div className="flex flex-wrap gap-3">
                                             {profile.skills.map((skill, index) => (
-                                                <span 
-                                                    key={index} 
+                                                <span
+                                                    key={index}
                                                     className="bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 px-4 py-2 rounded-full font-medium border border-blue-200 flex items-center space-x-2"
                                                 >
                                                     <Zap className="w-4 h-4" />
@@ -715,8 +715,8 @@ const ApplicantDashboardPage = () => {
                                     {editFormData.skills.length > 0 && (
                                         <div className="flex flex-wrap gap-2">
                                             {editFormData.skills.map((skill, index) => (
-                                                <span 
-                                                    key={index} 
+                                                <span
+                                                    key={index}
                                                     className="bg-blue-100 text-blue-800 px-3 py-2 rounded-full text-sm font-medium flex items-center space-x-2 group"
                                                 >
                                                     <span>{skill}</span>
@@ -749,28 +749,28 @@ const ApplicantDashboardPage = () => {
                                                 type="text"
                                                 placeholder="Vəzifə adı"
                                                 value={newExperience.jobTitle}
-                                                onChange={(e) => setNewExperience({...newExperience, jobTitle: e.target.value})}
+                                                onChange={(e) => setNewExperience({ ...newExperience, jobTitle: e.target.value })}
                                                 className="px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                                             />
                                             <input
                                                 type="text"
                                                 placeholder="Şirkət adı"
                                                 value={newExperience.companyName}
-                                                onChange={(e) => setNewExperience({...newExperience, companyName: e.target.value})}
+                                                onChange={(e) => setNewExperience({ ...newExperience, companyName: e.target.value })}
                                                 className="px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                                             />
                                             <input
                                                 type="date"
                                                 placeholder="Başlama tarixi"
                                                 value={newExperience.startDate}
-                                                onChange={(e) => setNewExperience({...newExperience, startDate: e.target.value})}
+                                                onChange={(e) => setNewExperience({ ...newExperience, startDate: e.target.value })}
                                                 className="px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                                             />
                                             <input
                                                 type="date"
                                                 placeholder="Bitmə tarixi"
                                                 value={newExperience.endDate}
-                                                onChange={(e) => setNewExperience({...newExperience, endDate: e.target.value})}
+                                                onChange={(e) => setNewExperience({ ...newExperience, endDate: e.target.value })}
                                                 disabled={newExperience.isCurrent}
                                                 className="px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 disabled:bg-gray-100"
                                             />
@@ -779,7 +779,7 @@ const ApplicantDashboardPage = () => {
                                                     <input
                                                         type="checkbox"
                                                         checked={newExperience.isCurrent}
-                                                        onChange={(e) => setNewExperience({...newExperience, isCurrent: e.target.checked, endDate: e.target.checked ? '' : newExperience.endDate})}
+                                                        onChange={(e) => setNewExperience({ ...newExperience, isCurrent: e.target.checked, endDate: e.target.checked ? '' : newExperience.endDate })}
                                                         className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                                                     />
                                                     <span className="text-sm text-gray-700">Hazırda bu işdə çalışıram</span>
@@ -789,7 +789,7 @@ const ApplicantDashboardPage = () => {
                                                 <textarea
                                                     placeholder="İş təsviri (isteğe bağlı)"
                                                     value={newExperience.description}
-                                                    onChange={(e) => setNewExperience({...newExperience, description: e.target.value})}
+                                                    onChange={(e) => setNewExperience({ ...newExperience, description: e.target.value })}
                                                     rows="3"
                                                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                                                 />
@@ -848,42 +848,42 @@ const ApplicantDashboardPage = () => {
                                                 type="text"
                                                 placeholder="Dərəcə (Bakalavr, Magistr, və s.)"
                                                 value={newEducation.degree}
-                                                onChange={(e) => setNewEducation({...newEducation, degree: e.target.value})}
+                                                onChange={(e) => setNewEducation({ ...newEducation, degree: e.target.value })}
                                                 className="px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                                             />
                                             <input
                                                 type="text"
                                                 placeholder="Təhsil müəssisəsi"
                                                 value={newEducation.institution}
-                                                onChange={(e) => setNewEducation({...newEducation, institution: e.target.value})}
+                                                onChange={(e) => setNewEducation({ ...newEducation, institution: e.target.value })}
                                                 className="px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                                             />
                                             <input
                                                 type="text"
                                                 placeholder="İxtisas sahəsi"
                                                 value={newEducation.fieldOfStudy}
-                                                onChange={(e) => setNewEducation({...newEducation, fieldOfStudy: e.target.value})}
+                                                onChange={(e) => setNewEducation({ ...newEducation, fieldOfStudy: e.target.value })}
                                                 className="px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                                             />
                                             <input
                                                 type="text"
                                                 placeholder="İxtisas (isteğe bağlı)"
                                                 value={newEducation.major}
-                                                onChange={(e) => setNewEducation({...newEducation, major: e.target.value})}
+                                                onChange={(e) => setNewEducation({ ...newEducation, major: e.target.value })}
                                                 className="px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                                             />
                                             <input
                                                 type="number"
                                                 placeholder="Başlama ili"
                                                 value={newEducation.startYear}
-                                                onChange={(e) => setNewEducation({...newEducation, startYear: e.target.value})}
+                                                onChange={(e) => setNewEducation({ ...newEducation, startYear: e.target.value })}
                                                 className="px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                                             />
                                             <input
                                                 type="number"
                                                 placeholder="Bitmə ili (isteğe bağlı)"
                                                 value={newEducation.endYear}
-                                                onChange={(e) => setNewEducation({...newEducation, endYear: e.target.value})}
+                                                onChange={(e) => setNewEducation({ ...newEducation, endYear: e.target.value })}
                                                 className="px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                                             />
                                         </div>

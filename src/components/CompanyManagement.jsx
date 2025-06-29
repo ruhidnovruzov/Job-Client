@@ -41,7 +41,7 @@ const CompanyManagement = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const res = await axios.get('http://192.168.100.52:5000/api/companies', config);
+      const res = await axios.get('https://job-server-tcq9.onrender.com/api/companies', config);
       setCompanies(res.data.data);
     } catch (err) {
       console.error('Şirkətlər gətirilərkən xəta:', err);
@@ -58,7 +58,7 @@ const CompanyManagement = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const res = await axios.get(`http://192.168.100.52:5000/api/companies/${companyId}`, config);
+      const res = await axios.get(`https://job-server-tcq9.onrender.com/api/companies/${companyId}`, config);
       setSelectedCompany(res.data.data);
       setShowCompanyModal(true);
     } catch (err) {
@@ -74,7 +74,7 @@ const CompanyManagement = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      await axios.delete(`http://192.168.100.52:5000/api/admin/users/${userId}`, config);
+      await axios.delete(`https://job-server-tcq9.onrender.com/api/admin/users/${userId}`, config);
       setCompanies(companies.filter(company => company.userId._id !== userId));
       setDeleteConfirm(null);
     } catch (err) {
@@ -151,7 +151,7 @@ const CompanyManagement = () => {
                     <div className="w-16 h-16 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-gray-200 flex items-center justify-center overflow-hidden group-hover:border-purple-300 transition-colors duration-300">
                       {company.logoUrl && company.logoUrl !== 'https://via.placeholder.com/150' ? (
                         <img
-                          src={`http://192.168.100.52:5000${company.logoUrl}`}
+                          src={`https://job-server-tcq9.onrender.com${company.logoUrl}`}
                           alt={`${company.companyName} Logosu`}
                           className="w-full h-full object-contain"
                         />
@@ -276,7 +276,7 @@ const CompanyManagement = () => {
                 <div className="w-24 h-24 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-gray-200 flex items-center justify-center overflow-hidden">
                   {selectedCompany.logoUrl && selectedCompany.logoUrl !== 'https://via.placeholder.com/150' ? (
                     <img
-                      src={`http://192.168.100.52:5000${selectedCompany.logoUrl}`}
+                      src={`https://job-server-tcq9.onrender.com${selectedCompany.logoUrl}`}
                       alt={`${selectedCompany.companyName} Logosu`}
                       className="w-full h-full object-contain"
                     />

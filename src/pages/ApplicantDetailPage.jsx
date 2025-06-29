@@ -2,25 +2,25 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { 
-  User, 
-  Mail, 
-  Phone, 
-  Award, 
-  GraduationCap, 
-  Briefcase, 
-  Download, 
-  ArrowLeft, 
-  Calendar, 
-  MapPin, 
-  Star, 
-  FileText, 
-  AlertCircle, 
-  Loader2,
-  Building2,
-  Clock,
-  Target,
-  Zap
+import {
+    User,
+    Mail,
+    Phone,
+    Award,
+    GraduationCap,
+    Briefcase,
+    Download,
+    ArrowLeft,
+    Calendar,
+    MapPin,
+    Star,
+    FileText,
+    AlertCircle,
+    Loader2,
+    Building2,
+    Clock,
+    Target,
+    Zap
 } from 'lucide-react';
 
 const ApplicantDetailPage = () => {
@@ -46,7 +46,7 @@ const ApplicantDetailPage = () => {
                         Authorization: `Bearer ${user.token}`,
                     },
                 };
-                const res = await axios.get(`http://192.168.100.52:5000/api/applicants/${id}`, config);
+                const res = await axios.get(`https://job-server-tcq9.onrender.com/api/applicants/${id}`, config);
                 setApplicant(res.data);
             } catch (err) {
                 console.error("Namizəd detalları gətirilərkən xəta:", err.response?.data || err);
@@ -91,7 +91,7 @@ const ApplicantDetailPage = () => {
                         <div className="text-center max-w-md">
                             <h2 className="text-2xl font-bold text-gray-800 mb-4">Xəta Baş Verdi</h2>
                             <p className="text-gray-600 mb-6">{error}</p>
-                            <Link 
+                            <Link
                                 to="/auth"
                                 className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
                             >
@@ -115,7 +115,7 @@ const ApplicantDetailPage = () => {
                         <div className="text-center">
                             <h2 className="text-2xl font-bold text-gray-800 mb-4">Profil Tapılmadı</h2>
                             <p className="text-gray-600 mb-6">Axtardığınız namizəd profili mövcud deyil və ya silinib.</p>
-                            <Link 
+                            <Link
                                 to="/applicants"
                                 className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
                             >
@@ -129,8 +129,8 @@ const ApplicantDetailPage = () => {
     }
 
     const defaultProfilePicture = 'https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png';
-    const profileImageUrl = applicant.profilePicture 
-        ? `http://192.168.100.52:5000${applicant.profilePicture}` 
+    const profileImageUrl = applicant.profilePicture
+        ? `https://job-server-tcq9.onrender.com${applicant.profilePicture}`
         : defaultProfilePicture;
 
     return (
@@ -145,7 +145,7 @@ const ApplicantDetailPage = () => {
             <div className="container mx-auto px-4 py-8">
                 {/* Back Button */}
                 <div className="mb-6">
-                    <Link 
+                    <Link
                         to="/applicants"
                         className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors duration-200 group"
                     >
@@ -157,10 +157,10 @@ const ApplicantDetailPage = () => {
                 {/* Main Content */}
                 <div className="max-w-6xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        
+
                         {/* Profile Sidebar */}
                         <div className="lg:col-span-1 space-y-6">
-                            
+
                             {/* Profile Card */}
                             <div className="bg-white rounded-2xl shadow-xl border border-gray-100/50 overflow-hidden sticky top-24">
                                 <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 p-8 text-white relative overflow-hidden">
@@ -224,7 +224,7 @@ const ApplicantDetailPage = () => {
                                     {applicant.resume && (
                                         <div className="pt-4">
                                             <a
-                                                href={`http://192.168.100.52:5000${applicant.resume}`}
+                                                href={`https://job-server-tcq9.onrender.com${applicant.resume}`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
@@ -240,7 +240,7 @@ const ApplicantDetailPage = () => {
 
                         {/* Main Content */}
                         <div className="lg:col-span-2 space-y-8">
-                            
+
                             {/* About Section */}
                             {applicant.about && (
                                 <div className="bg-white rounded-2xl shadow-xl border border-gray-100/50 p-8">
@@ -265,8 +265,8 @@ const ApplicantDetailPage = () => {
                                     </h2>
                                     <div className="flex flex-wrap gap-3">
                                         {applicant.skills.map((skill, index) => (
-                                            <span 
-                                                key={index} 
+                                            <span
+                                                key={index}
                                                 className="group bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 px-4 py-2 rounded-full font-medium border border-blue-200 hover:from-blue-200 hover:to-indigo-200 transition-all duration-200 hover:scale-105 cursor-default flex items-center space-x-2"
                                             >
                                                 <Zap className="w-4 h-4" />

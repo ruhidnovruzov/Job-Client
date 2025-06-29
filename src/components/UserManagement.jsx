@@ -46,7 +46,7 @@ const UserManagement = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const res = await axios.get('http://192.168.100.52:5000/api/admin/users', config);
+      const res = await axios.get('https://job-server-tcq9.onrender.com/api/admin/users', config);
       setUsers(res.data);
     } catch (err) {
       console.error('İstifadəçilər gətirilərkən xəta:', err);
@@ -63,7 +63,7 @@ const UserManagement = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      await axios.delete(`http://192.168.100.52:5000/api/admin/users/${userId}`, config);
+      await axios.delete(`https://job-server-tcq9.onrender.com/api/admin/users/${userId}`, config);
       setUsers(users.filter(u => u._id !== userId));
       setDeleteConfirm(null);
     } catch (err) {
@@ -79,7 +79,7 @@ const UserManagement = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const res = await axios.get(`http://192.168.100.52:5000/api/admin/users/${userId}`, config);
+      const res = await axios.get(`https://job-server-tcq9.onrender.com/api/admin/users/${userId}`, config);
       setSelectedUser(res.data);
       setShowUserModal(true);
     } catch (err) {
@@ -182,10 +182,10 @@ const UserManagement = () => {
                   <td className="px-6 py-4">
                     <div className="flex items-center space-x-3">
                       <div className={`w-10 h-10 rounded-full flex items-center justify-center ${userData.role === 'applicant'
-                          ? 'bg-green-100 text-green-600'
-                          : userData.role === 'company'
-                            ? 'bg-purple-100 text-purple-600'
-                            : 'bg-blue-100 text-blue-600'
+                        ? 'bg-green-100 text-green-600'
+                        : userData.role === 'company'
+                          ? 'bg-purple-100 text-purple-600'
+                          : 'bg-blue-100 text-blue-600'
                         }`}>
                         {userData.role === 'applicant' ? (
                           <UserCheck className="w-5 h-5" />
@@ -208,10 +208,10 @@ const UserManagement = () => {
                   </td>
                   <td className="px-6 py-4">
                     <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${userData.role === 'applicant'
-                        ? 'bg-green-100 text-green-700'
-                        : userData.role === 'company'
-                          ? 'bg-purple-100 text-purple-700'
-                          : 'bg-blue-100 text-blue-700'
+                      ? 'bg-green-100 text-green-700'
+                      : userData.role === 'company'
+                        ? 'bg-purple-100 text-purple-700'
+                        : 'bg-blue-100 text-blue-700'
                       }`}>
                       {userData.role === 'applicant' ? 'İş Axtaran' :
                         userData.role === 'company' ? 'Şirkət' : 'Admin'}
@@ -220,7 +220,7 @@ const UserManagement = () => {
                   <td className="px-6 py-4 text-sm text-gray-600">
                     {new Date(userData.createdAt).toLocaleDateString('az-AZ')}
                   </td>
-                  
+
                   <td className="px-6 py-4">
                     <div className="flex items-center justify-center space-x-2">
                       <button
@@ -278,10 +278,10 @@ const UserManagement = () => {
               {/* Basic Info */}
               <div className="flex items-center space-x-4">
                 <div className={`w-16 h-16 rounded-full flex items-center justify-center ${selectedUser.role === 'applicant'
-                    ? 'bg-green-100 text-green-600'
-                    : selectedUser.role === 'company'
-                      ? 'bg-purple-100 text-purple-600'
-                      : 'bg-blue-100 text-blue-600'
+                  ? 'bg-green-100 text-green-600'
+                  : selectedUser.role === 'company'
+                    ? 'bg-purple-100 text-purple-600'
+                    : 'bg-blue-100 text-blue-600'
                   }`}>
                   {selectedUser.role === 'applicant' ? (
                     <UserCheck className="w-8 h-8" />
@@ -300,10 +300,10 @@ const UserManagement = () => {
                   </h4>
                   <p className="text-gray-600">{selectedUser.email}</p>
                   <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium mt-2 ${selectedUser.role === 'applicant'
-                      ? 'bg-green-100 text-green-700'
-                      : selectedUser.role === 'company'
-                        ? 'bg-purple-100 text-purple-700'
-                        : 'bg-blue-100 text-blue-700'
+                    ? 'bg-green-100 text-green-700'
+                    : selectedUser.role === 'company'
+                      ? 'bg-purple-100 text-purple-700'
+                      : 'bg-blue-100 text-blue-700'
                     }`}>
                     {selectedUser.role === 'applicant' ? 'İş Axtaran' :
                       selectedUser.role === 'company' ? 'Şirkət' : 'Admin'}
@@ -405,8 +405,8 @@ const UserManagement = () => {
                     <div>
                       <p className="text-sm text-gray-500">Status</p>
                       <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${selectedUser.isVerified
-                          ? 'bg-green-100 text-green-700'
-                          : 'bg-yellow-100 text-yellow-700'
+                        ? 'bg-green-100 text-green-700'
+                        : 'bg-yellow-100 text-yellow-700'
                         }`}>
                         {selectedUser.isVerified ? 'Təsdiqlənib' : 'Gözləyir'}
                       </span>

@@ -53,7 +53,7 @@ const CompanyDashboardPage = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const res = await axios.get('http://192.168.100.52:5000/api/jobs/company/myjobs', config);
+      const res = await axios.get('https://job-server-tcq9.onrender.com/api/jobs/company/myjobs', config);
       setCompanyJobs(res.data.data);
     } catch (err) {
       console.error('Şirkət işləri gətirilərkən xəta:', err);
@@ -74,7 +74,7 @@ const CompanyDashboardPage = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      await axios.delete(`http://192.168.100.52:5000/api/jobs/${jobId}`, config);
+      await axios.delete(`https://job-server-tcq9.onrender.com/api/jobs/${jobId}`, config);
       setCompanyJobs(companyJobs.filter(job => job._id !== jobId));
       if (selectedJobApplicants && selectedJobApplicants.jobId === jobId) {
         setSelectedJobApplicants(null);
@@ -95,7 +95,7 @@ const CompanyDashboardPage = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const res = await axios.get(`http://192.168.100.52:5000/api/jobs/${jobId}/applicants`, config);
+      const res = await axios.get(`https://job-server-tcq9.onrender.com/api/jobs/${jobId}/applicants`, config);
       setSelectedJobApplicants({
         jobId,
         jobTitle,
@@ -120,7 +120,7 @@ const CompanyDashboardPage = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const res = await axios.get('http://192.168.100.52:5000/api/companies/me', config);
+      const res = await axios.get('https://job-server-tcq9.onrender.com/api/companies/me', config);
       setProfile(res.data.data);
       setEditFormData({
         companyName: res.data.data.companyName || '',
@@ -170,7 +170,7 @@ const CompanyDashboardPage = () => {
         formData.append('logo', selectedLogoFile);
       }
 
-      const res = await axios.put('http://192.168.100.52:5000/api/companies/profile', formData, config);
+      const res = await axios.put('https://job-server-tcq9.onrender.com/api/companies/profile', formData, config);
       setProfileMessage(res.data.message);
       setProfile(res.data.data);
       setSelectedLogoFile(null);

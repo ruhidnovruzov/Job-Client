@@ -2,23 +2,23 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { 
-  Plus, 
-  Building2, 
-  MapPin, 
-  DollarSign, 
-  Clock, 
-  Award, 
-  Calendar, 
-  FileText, 
-  Tag, 
-  AlertCircle, 
-  Loader2, 
-  CheckCircle,
-  ArrowLeft,
-  Briefcase,
-  Users,
-  Target
+import {
+    Plus,
+    Building2,
+    MapPin,
+    DollarSign,
+    Clock,
+    Award,
+    Calendar,
+    FileText,
+    Tag,
+    AlertCircle,
+    Loader2,
+    CheckCircle,
+    ArrowLeft,
+    Briefcase,
+    Users,
+    Target
 } from 'lucide-react';
 
 const PostJobPage = () => {
@@ -51,7 +51,7 @@ const PostJobPage = () => {
 
     const fetchCategories = async () => {
         try {
-            const res = await axios.get('http://192.168.100.52:5000/api/categories');
+            const res = await axios.get('https://job-server-tcq9.onrender.com/api/categories');
             setCategories(res.data.data);
             if (res.data.data.length > 0) {
                 setFormData((prev) => ({ ...prev, category: res.data.data[0]._id }));
@@ -88,7 +88,7 @@ const PostJobPage = () => {
                 },
             };
             await axios.post(
-                'http://192.168.100.52:5000/api/jobs',
+                'https://job-server-tcq9.onrender.com/api/jobs',
                 { ...formData, applicationDeadline: deadlineDate.toISOString() },
                 config
             );
@@ -103,7 +103,7 @@ const PostJobPage = () => {
                 experienceLevel: 'Təcrübəsiz',
                 applicationDeadline: '',
             });
-            
+
             // Success message göstərdikdən sonra yönləndir
             setTimeout(() => {
                 navigate('/company-dashboard');
@@ -148,7 +148,7 @@ const PostJobPage = () => {
                         <div className="text-center max-w-md">
                             <h2 className="text-2xl font-bold text-gray-800 mb-4">Giriş İcazəsi Yoxdur</h2>
                             <p className="text-gray-600 mb-6">Bu səhifəyə yalnız şirkətlər daxil ola bilər.</p>
-                            <Link 
+                            <Link
                                 to="/"
                                 className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
                             >
@@ -174,7 +174,7 @@ const PostJobPage = () => {
             <div className="bg-gradient-to-r from-green-600 via-emerald-600 to-teal-700 relative overflow-hidden">
                 <div className="absolute inset-0 bg-black/10"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-green-600/90 to-transparent"></div>
-                
+
                 {/* Decorative Elements */}
                 <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
                     <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
@@ -206,7 +206,7 @@ const PostJobPage = () => {
             <div className="container mx-auto px-4 py-12 relative -mt-8">
                 {/* Back Button */}
                 <div className="mb-6">
-                    <Link 
+                    <Link
                         to="/company-dashboard"
                         className="inline-flex items-center space-x-2 text-green-600 hover:text-green-700 transition-colors duration-200 group"
                     >
@@ -440,11 +440,10 @@ const PostJobPage = () => {
                                     <button
                                         type="submit"
                                         disabled={submitting}
-                                        className={`w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${
-                                            submitting
-                                                ? 'bg-gray-400 text-white cursor-not-allowed'
-                                                : 'bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white'
-                                        }`}
+                                        className={`w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${submitting
+                                            ? 'bg-gray-400 text-white cursor-not-allowed'
+                                            : 'bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white'
+                                            }`}
                                     >
                                         {submitting ? (
                                             <div className="flex items-center justify-center space-x-2">

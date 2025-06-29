@@ -2,22 +2,22 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { 
-  Building2, 
-  MapPin, 
-  DollarSign, 
-  Clock, 
-  Award, 
-  Calendar, 
-  Globe, 
-  CheckCircle, 
-  AlertCircle, 
-  Loader2,
-  ArrowLeft,
-  ExternalLink,
-  Users,
-  Briefcase,
-  Tag
+import {
+    Building2,
+    MapPin,
+    DollarSign,
+    Clock,
+    Award,
+    Calendar,
+    Globe,
+    CheckCircle,
+    AlertCircle,
+    Loader2,
+    ArrowLeft,
+    ExternalLink,
+    Users,
+    Briefcase,
+    Tag
 } from 'lucide-react';
 
 const JobDetailPage = () => {
@@ -39,7 +39,7 @@ const JobDetailPage = () => {
                         Authorization: user.token ? `Bearer ${user.token}` : undefined,
                     },
                 };
-                const res = await axios.get(`http://192.168.100.52:5000/api/jobs/${id}`, config);
+                const res = await axios.get(`https://job-server-tcq9.onrender.com/api/jobs/${id}`, config);
                 setJob(res.data.data);
             } catch (err) {
                 console.error('İş elanı gətirilərkən xəta:', err.response?.data || err);
@@ -70,7 +70,7 @@ const JobDetailPage = () => {
                     Authorization: `Bearer ${user.token}`,
                 },
             };
-            const res = await axios.post(`http://192.168.100.52:5000/api/jobs/${id}/apply`, {}, config);
+            const res = await axios.post(`https://job-server-tcq9.onrender.com/api/jobs/${id}/apply`, {}, config);
             setApplyMessage(res.data.message);
         } catch (err) {
             console.error('Müraciət edilərkən xəta:', err.response?.data);
@@ -83,14 +83,14 @@ const JobDetailPage = () => {
     if (loading) {
         return (
             <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent mb-4"></div>
-            <p className="text-xl font-semibold text-gray-700">Məlumatlar yüklənir...</p>
-            <p className="text-sm text-gray-500 mt-2">Zəhmət olmasa gözləyin</p>
-          </div>
-        </div>
-      </div>
+                <div className="flex items-center justify-center min-h-screen">
+                    <div className="text-center">
+                        <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent mb-4"></div>
+                        <p className="text-xl font-semibold text-gray-700">Məlumatlar yüklənir...</p>
+                        <p className="text-sm text-gray-500 mt-2">Zəhmət olmasa gözləyin</p>
+                    </div>
+                </div>
+            </div>
         );
     }
 
@@ -105,7 +105,7 @@ const JobDetailPage = () => {
                         <div className="text-center max-w-md">
                             <h2 className="text-2xl font-bold text-gray-800 mb-4">Xəta Baş Verdi</h2>
                             <p className="text-gray-600 mb-6">{error}</p>
-                            <Link 
+                            <Link
                                 to="/"
                                 className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
                             >
@@ -129,7 +129,7 @@ const JobDetailPage = () => {
                         <div className="text-center">
                             <h2 className="text-2xl font-bold text-gray-800 mb-4">İş Elanı Tapılmadı</h2>
                             <p className="text-gray-600 mb-6">Axtardığınız iş elanı mövcud deyil və ya silinib.</p>
-                            <Link 
+                            <Link
                                 to="/"
                                 className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
                             >
@@ -144,7 +144,7 @@ const JobDetailPage = () => {
 
     const defaultCompanyLogo = 'https://via.placeholder.com/150';
     const companyLogoUrl = job.company?.logoUrl && job.company.logoUrl !== defaultCompanyLogo
-        ? `http://192.168.100.52:5000${job.company.logoUrl}`
+        ? `https://job-server-tcq9.onrender.com${job.company.logoUrl}`
         : defaultCompanyLogo;
 
     const hasApplied = job.applicants?.some(applicant => applicant.user === user?.id);
@@ -161,7 +161,7 @@ const JobDetailPage = () => {
             <div className="container mx-auto px-4 py-8">
                 {/* Back Button */}
                 <div className="mb-6">
-                    <Link 
+                    <Link
                         to="/"
                         className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors duration-200 group"
                     >
@@ -173,10 +173,10 @@ const JobDetailPage = () => {
                 {/* Main Content */}
                 <div className="max-w-6xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        
+
                         {/* Main Job Details */}
                         <div className="lg:col-span-2 space-y-8">
-                            
+
                             {/* Job Header */}
                             <div className="bg-white rounded-2xl shadow-xl border border-gray-100/50 overflow-hidden">
                                 <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 p-8 text-white relative overflow-hidden">
@@ -233,11 +233,10 @@ const JobDetailPage = () => {
 
                                 {/* Apply Message */}
                                 {applyMessage && (
-                                    <div className={`p-4 border-l-4 ${
-                                        applyMessage.includes('uğurla') 
-                                            ? 'bg-green-50 border-green-400 text-green-700' 
-                                            : 'bg-red-50 border-red-400 text-red-700'
-                                    }`}>
+                                    <div className={`p-4 border-l-4 ${applyMessage.includes('uğurla')
+                                        ? 'bg-green-50 border-green-400 text-green-700'
+                                        : 'bg-red-50 border-red-400 text-red-700'
+                                        }`}>
                                         <div className="flex items-center space-x-2">
                                             {applyMessage.includes('uğurla') ? (
                                                 <CheckCircle className="w-5 h-5" />
@@ -257,12 +256,12 @@ const JobDetailPage = () => {
                                     İşin Təsviri
                                 </h2>
                                 <div className="prose prose-lg max-w-none">
-    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100">
-        <p className="text-gray-700 leading-relaxed break-words whitespace-pre-line">
-            {job.description}
-        </p>
-    </div>
-</div>
+                                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100">
+                                        <p className="text-gray-700 leading-relaxed break-words whitespace-pre-line">
+                                            {job.description}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
 
                             {/* Company Information */}
@@ -281,7 +280,7 @@ const JobDetailPage = () => {
                                             <p className="text-gray-600">{job.company?.address || 'Qeyd edilməyib'}</p>
                                         </div>
                                     </div>
-                                    
+
                                     {job.company?.website && (
                                         <div className="flex items-start space-x-4">
                                             <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -289,10 +288,10 @@ const JobDetailPage = () => {
                                             </div>
                                             <div>
                                                 <h3 className="font-semibold text-gray-800 mb-1">Vebsayt</h3>
-                                                <a 
-                                                    href={job.company.website} 
-                                                    target="_blank" 
-                                                    rel="noopener noreferrer" 
+                                                <a
+                                                    href={job.company.website}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
                                                     className="text-blue-600 hover:text-blue-700 transition-colors duration-200 flex items-center space-x-1 group"
                                                 >
                                                     <span>{job.company.website}</span>
@@ -301,7 +300,7 @@ const JobDetailPage = () => {
                                             </div>
                                         </div>
                                     )}
-                                    
+
                                     <div className="flex items-start space-x-4">
                                         <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                             <Users className="w-5 h-5 text-purple-600" />
@@ -317,14 +316,14 @@ const JobDetailPage = () => {
 
                         {/* Sidebar */}
                         <div className="space-y-6">
-                            
+
                             {/* Job Details Card */}
                             <div className="bg-white rounded-2xl shadow-xl border border-gray-100/50 p-6 sticky top-24">
                                 <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
                                     <div className="w-1 h-6 bg-gradient-to-b from-blue-500 to-indigo-600 rounded-full mr-3"></div>
                                     İş Detalları
                                 </h3>
-                                
+
                                 <div className="space-y-4">
                                     <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
                                         <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -375,13 +374,12 @@ const JobDetailPage = () => {
                                         <button
                                             onClick={handleApply}
                                             disabled={hasApplied || isApplying}
-                                            className={`w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${
-                                                hasApplied
-                                                    ? 'bg-gray-400 text-white cursor-not-allowed'
-                                                    : isApplying
+                                            className={`w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${hasApplied
+                                                ? 'bg-gray-400 text-white cursor-not-allowed'
+                                                : isApplying
                                                     ? 'bg-blue-400 text-white cursor-not-allowed'
                                                     : 'bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white'
-                                            }`}
+                                                }`}
                                         >
                                             {isApplying ? (
                                                 <div className="flex items-center justify-center space-x-2">
@@ -402,8 +400,8 @@ const JobDetailPage = () => {
                                     {(!user || !user.token) && (
                                         <div className="text-center">
                                             <p className="text-gray-600 mb-4">Müraciət etmək üçün daxil olun</p>
-                                            <Link 
-                                                to="/auth" 
+                                            <Link
+                                                to="/auth"
                                                 className="w-full inline-block bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-center"
                                             >
                                                 Daxil Ol / Qeydiyyat

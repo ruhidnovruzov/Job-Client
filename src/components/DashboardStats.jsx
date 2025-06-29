@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
-import { 
-  Users, 
-  Building2, 
-  Briefcase, 
-  Tag, 
-  TrendingUp, 
-  UserCheck, 
+import {
+  Users,
+  Building2,
+  Briefcase,
+  Tag,
+  TrendingUp,
+  UserCheck,
   Calendar,
   Activity,
   AlertCircle,
@@ -39,7 +39,7 @@ const DashboardStats = () => {
     try {
       setLoading(true);
       setError('');
-      
+
       const config = {
         headers: {
           Authorization: `Bearer ${user.token}`,
@@ -48,9 +48,9 @@ const DashboardStats = () => {
 
       // Paralel sorğular göndər
       const [usersRes, jobsRes, categoriesRes] = await Promise.all([
-        axios.get('http://192.168.100.52:5000/api/admin/users', config),
-        axios.get('http://192.168.100.52:5000/api/jobs', config),
-        axios.get('http://192.168.100.52:5000/api/categories', config)
+        axios.get('https://job-server-tcq9.onrender.com/api/admin/users', config),
+        axios.get('https://job-server-tcq9.onrender.com/api/jobs', config),
+        axios.get('https://job-server-tcq9.onrender.com/api/categories', config)
       ]);
 
       const users = usersRes.data;
@@ -111,7 +111,7 @@ const DashboardStats = () => {
         <div className="text-center max-w-md">
           <h3 className="text-xl font-bold text-gray-800 mb-2">Xəta Baş Verdi</h3>
           <p className="text-gray-600 mb-4">{error}</p>
-          <button 
+          <button
             onClick={fetchDashboardStats}
             className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
           >
@@ -205,7 +205,7 @@ const DashboardStats = () => {
 
       {/* Recent Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        
+
         {/* Recent Users */}
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100/50 overflow-hidden">
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 px-6 py-4 border-b border-gray-200">
@@ -219,13 +219,12 @@ const DashboardStats = () => {
               <div className="space-y-4">
                 {stats.recentUsers.map((user, index) => (
                   <div key={user._id} className="flex items-center space-x-4 p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-200">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                      user.role === 'applicant' 
-                        ? 'bg-green-100 text-green-600' 
-                        : user.role === 'company'
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center ${user.role === 'applicant'
+                      ? 'bg-green-100 text-green-600'
+                      : user.role === 'company'
                         ? 'bg-purple-100 text-purple-600'
                         : 'bg-blue-100 text-blue-600'
-                    }`}>
+                      }`}>
                       {user.role === 'applicant' ? (
                         <UserCheck className="w-5 h-5" />
                       ) : user.role === 'company' ? (
@@ -236,7 +235,7 @@ const DashboardStats = () => {
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-medium text-gray-800 truncate">
-                        {user.profile?.firstName && user.profile?.lastName 
+                        {user.profile?.firstName && user.profile?.lastName
                           ? `${user.profile.firstName} ${user.profile.lastName}`
                           : user.profile?.companyName || user.email
                         }

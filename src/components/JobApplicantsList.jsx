@@ -55,7 +55,7 @@ const JobApplicantsList = ({ applicants, jobTitle, applicantsLoading, applicants
                                 </div>
                                 {applicant.resume && (
                                     <a
-                                        href={`http://192.168.100.52:5000${applicant.resume}`}
+                                        href={`https://job-server-tcq9.onrender.com${applicant.resume}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="inline-flex items-center mt-3 text-sm text-indigo-600 hover:text-indigo-800 font-medium"

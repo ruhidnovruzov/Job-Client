@@ -31,8 +31,8 @@ const AuthForm = ({ isRegister, role }) => {
         setError('');
 
         const url = isRegister
-            ? 'http://192.168.100.52:5000/api/auth/register'
-            : 'http://192.168.100.52:5000/api/auth/login';
+            ? 'https://job-server-tcq9.onrender.com/api/auth/register'
+            : 'https://job-server-tcq9.onrender.com/api/auth/login';
 
         const dataToSend = {
             email: formData.email,

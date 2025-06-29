@@ -42,7 +42,7 @@ const EditJobPage = () => {
                 setError('');
 
                 // Kateqoriyaları yüklə
-                const categoriesRes = await axios.get('http://192.168.100.52:5000/api/categories');
+                const categoriesRes = await axios.get('https://job-server-tcq9.onrender.com/api/categories');
                 setCategories(categoriesRes.data.data);
 
                 // İş elanının mövcud məlumatlarını yüklə
@@ -51,7 +51,7 @@ const EditJobPage = () => {
                         Authorization: `Bearer ${user.token}`,
                     },
                 };
-                const jobRes = await axios.get(`http://192.168.100.52:5000/api/jobs/${id}`, config);
+                const jobRes = await axios.get(`https://job-server-tcq9.onrender.com/api/jobs/${id}`, config);
                 const jobData = jobRes.data.data;
 
                 setFormData({
@@ -105,7 +105,7 @@ const EditJobPage = () => {
                 applicationDeadline: formData.applicationDeadline.toISOString(),
             };
 
-            const res = await axios.put(`http://192.168.100.52:5000/api/jobs/${id}`, dataToSend, config);
+            const res = await axios.put(`https://job-server-tcq9.onrender.com/api/jobs/${id}`, dataToSend, config);
             setMessage('İş elanı uğurla yeniləndi!');
             // Update the form data with the response data (if needed, to reflect server changes)
             setFormData({

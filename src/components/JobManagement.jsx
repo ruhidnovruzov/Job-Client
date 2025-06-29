@@ -43,7 +43,7 @@ const JobManagement = () => {
     try {
       setLoading(true);
       setError('');
-      const res = await axios.get('http://192.168.100.52:5000/api/jobs');
+      const res = await axios.get('https://job-server-tcq9.onrender.com/api/jobs');
       setJobs(res.data.data);
     } catch (err) {
       console.error('İş elanları gətirilərkən xəta:', err);
@@ -55,7 +55,7 @@ const JobManagement = () => {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get('http://192.168.100.52:5000/api/categories');
+      const res = await axios.get('https://job-server-tcq9.onrender.com/api/categories');
       setCategories(res.data.data);
     } catch (err) {
       console.error('Kateqoriyalar gətirilərkən xəta:', err);
@@ -64,7 +64,7 @@ const JobManagement = () => {
 
   const handleViewJob = async (jobId) => {
     try {
-      const res = await axios.get(`http://192.168.100.52:5000/api/jobs/${jobId}`);
+      const res = await axios.get(`https://job-server-tcq9.onrender.com/api/jobs/${jobId}`);
       setSelectedJob(res.data.data);
       setShowJobModal(true);
     } catch (err) {
@@ -80,7 +80,7 @@ const JobManagement = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      await axios.delete(`http://192.168.100.52:5000/api/jobs/${jobId}`, config);
+      await axios.delete(`https://job-server-tcq9.onrender.com/api/jobs/${jobId}`, config);
       setJobs(jobs.filter(job => job._id !== jobId));
       setDeleteConfirm(null);
     } catch (err) {

@@ -2,31 +2,31 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { 
-  User, 
-  Mail, 
-  Lock, 
-  Building2, 
-  Phone, 
-  Calendar, 
-  Globe, 
-  MapPin, 
-  Briefcase, 
-  Award, 
-  FileText, 
-  Users, 
-  AlertCircle, 
-  CheckCircle, 
-  Loader2, 
-  Eye, 
-  EyeOff,
-  ArrowRight,
-  UserPlus,
-  LogIn,
-  Tag,
-  Clock,
-  ArrowLeft,
-  KeyRound
+import {
+    User,
+    Mail,
+    Lock,
+    Building2,
+    Phone,
+    Calendar,
+    Globe,
+    MapPin,
+    Briefcase,
+    Award,
+    FileText,
+    Users,
+    AlertCircle,
+    CheckCircle,
+    Loader2,
+    Eye,
+    EyeOff,
+    ArrowRight,
+    UserPlus,
+    LogIn,
+    Tag,
+    Clock,
+    ArrowLeft,
+    KeyRound
 } from 'lucide-react';
 
 const AuthPage = () => {
@@ -74,7 +74,7 @@ const AuthPage = () => {
     const fetchCategories = async () => {
         setLoadingCategories(true);
         try {
-            const res = await axios.get('http://192.168.100.52:5000/api/categories');
+            const res = await axios.get('https://job-server-tcq9.onrender.com/api/categories');
             setCategories(res.data.data);
             if (res.data.data.length > 0) {
                 setFormData((prev) => ({ ...prev, category: res.data.data[0]._id }));
@@ -101,10 +101,10 @@ const AuthPage = () => {
         setSubmitting(true);
 
         try {
-            const res = await axios.post('http://192.168.100.52:5000/api/auth/forgot-password', {
+            const res = await axios.post('https://job-server-tcq9.onrender.com/api/auth/forgot-password', {
                 email: forgotPasswordEmail
             });
-            
+
             setMessage(res.data.message);
             setForgotPasswordEmail('');
         } catch (err) {
@@ -128,11 +128,11 @@ const AuthPage = () => {
                     return;
                 }
 
-                const res = await axios.post('http://192.168.100.52:5000/api/auth/register', formData);
+                const res = await axios.post('https://job-server-tcq9.onrender.com/api/auth/register', formData);
                 setMessage(res.data.message + " İndi daxil ola bilərsiniz.");
                 setAuthMode('login');
             } else {
-                const res = await axios.post('http://192.168.100.52:5000/api/auth/login', {
+                const res = await axios.post('https://job-server-tcq9.onrender.com/api/auth/login', {
                     email: formData.email,
                     password: formData.password,
                 });
@@ -192,7 +192,7 @@ const AuthPage = () => {
             <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 relative overflow-hidden">
                 <div className="absolute inset-0 bg-black/10"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 to-transparent"></div>
-                
+
                 {/* Decorative Elements */}
                 <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
                     <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
@@ -298,11 +298,10 @@ const AuthPage = () => {
                                         <button
                                             type="submit"
                                             disabled={submitting}
-                                            className={`w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${
-                                                submitting
-                                                    ? 'bg-gray-400 text-white cursor-not-allowed'
-                                                    : 'bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white'
-                                            }`}
+                                            className={`w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${submitting
+                                                ? 'bg-gray-400 text-white cursor-not-allowed'
+                                                : 'bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white'
+                                                }`}
                                         >
                                             {submitting ? (
                                                 <div className="flex items-center justify-center space-x-2">
@@ -397,11 +396,10 @@ const AuthPage = () => {
                                                     <button
                                                         type="button"
                                                         onClick={() => setFormData({ ...formData, role: 'applicant' })}
-                                                        className={`p-4 rounded-xl border-2 transition-all duration-200 ${
-                                                            formData.role === 'applicant'
-                                                                ? 'border-blue-500 bg-blue-50 text-blue-700'
-                                                                : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
-                                                        }`}
+                                                        className={`p-4 rounded-xl border-2 transition-all duration-200 ${formData.role === 'applicant'
+                                                            ? 'border-blue-500 bg-blue-50 text-blue-700'
+                                                            : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
+                                                            }`}
                                                     >
                                                         <User className="w-6 h-6 mx-auto mb-2" />
                                                         <span className="font-medium">İş Axtaran</span>
@@ -409,11 +407,10 @@ const AuthPage = () => {
                                                     <button
                                                         type="button"
                                                         onClick={() => setFormData({ ...formData, role: 'company' })}
-                                                        className={`p-4 rounded-xl border-2 transition-all duration-200 ${
-                                                            formData.role === 'company'
-                                                                ? 'border-blue-500 bg-blue-50 text-blue-700'
-                                                                : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
-                                                        }`}
+                                                        className={`p-4 rounded-xl border-2 transition-all duration-200 ${formData.role === 'company'
+                                                            ? 'border-blue-500 bg-blue-50 text-blue-700'
+                                                            : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
+                                                            }`}
                                                     >
                                                         <Building2 className="w-6 h-6 mx-auto mb-2" />
                                                         <span className="font-medium">Şirkət</span>
@@ -428,7 +425,7 @@ const AuthPage = () => {
                                                         <div className="w-1 h-6 bg-gradient-to-b from-blue-500 to-indigo-600 rounded-full mr-3"></div>
                                                         Şəxsi Məlumatlar
                                                     </h3>
-                                                    
+
                                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                         <div className="space-y-2">
                                                             <label htmlFor="firstName" className="flex items-center text-gray-700 text-sm font-bold">
@@ -562,7 +559,7 @@ const AuthPage = () => {
                                                         <div className="w-1 h-6 bg-gradient-to-b from-green-500 to-emerald-600 rounded-full mr-3"></div>
                                                         Şirkət Məlumatları
                                                     </h3>
-                                                    
+
                                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                         <div className="space-y-2">
                                                             <label htmlFor="companyName" className="flex items-center text-gray-700 text-sm font-bold">
@@ -691,13 +688,12 @@ const AuthPage = () => {
                                         <button
                                             type="submit"
                                             disabled={submitting}
-                                            className={`w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${
-                                                submitting
-                                                    ? 'bg-gray-400 text-white cursor-not-allowed'
-                                                    : isRegister
+                                            className={`w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${submitting
+                                                ? 'bg-gray-400 text-white cursor-not-allowed'
+                                                : isRegister
                                                     ? 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white'
                                                     : 'bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white'
-                                            }`}
+                                                }`}
                                         >
                                             {submitting ? (
                                                 <div className="flex items-center justify-center space-x-2">
@@ -735,7 +731,7 @@ const AuthPage = () => {
                                         <span className="px-4 bg-white text-gray-500">və ya</span>
                                     </div>
                                 </div>
-                                
+
                                 <div className="mt-4 space-y-2">
                                     {isForgotPassword ? (
                                         <button
@@ -766,7 +762,7 @@ const AuthPage = () => {
 
                             {/* Back to Home */}
                             <div className="mt-6 text-center">
-                                <Link 
+                                <Link
                                     to="/"
                                     className="text-gray-500 hover:text-gray-700 text-sm transition-colors duration-200"
                                 >

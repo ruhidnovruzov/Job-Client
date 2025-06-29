@@ -2,23 +2,23 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
-import { 
-  Users, 
-  Search, 
-  Download, 
-  Eye, 
-  AlertCircle, 
-  Loader2, 
-  User, 
-  Award, 
-  Briefcase,
-  Filter,
-  Grid3X3,
-  List,
-  Star,
-  MapPin,
-  Calendar,
-  FileText
+import {
+    Users,
+    Search,
+    Download,
+    Eye,
+    AlertCircle,
+    Loader2,
+    User,
+    Award,
+    Briefcase,
+    Filter,
+    Grid3X3,
+    List,
+    Star,
+    MapPin,
+    Calendar,
+    FileText
 } from 'lucide-react';
 
 const ApplicantsPage = () => {
@@ -46,7 +46,7 @@ const ApplicantsPage = () => {
                         Authorization: `Bearer ${user.token}`,
                     },
                 };
-                const res = await axios.get('http://192.168.100.52:5000/api/applicants', config);
+                const res = await axios.get('https://job-server-tcq9.onrender.com/api/applicants', config);
                 setApplicants(res.data);
                 setFilteredApplicants(res.data);
             } catch (err) {
@@ -66,7 +66,7 @@ const ApplicantsPage = () => {
             const fullName = `${applicant.firstName} ${applicant.lastName}`.toLowerCase();
             const category = applicant.category?.name?.toLowerCase() || '';
             const search = searchTerm.toLowerCase();
-            
+
             return fullName.includes(search) || category.includes(search);
         });
         setFilteredApplicants(filtered);
@@ -74,15 +74,15 @@ const ApplicantsPage = () => {
 
     if (loading) {
         return (
-  <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent mb-4"></div>
-            <p className="text-xl font-semibold text-gray-700">Məlumatlar yüklənir...</p>
-            <p className="text-sm text-gray-500 mt-2">Zəhmət olmasa gözləyin</p>
-          </div>
-        </div>
-      </div>
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+                <div className="flex items-center justify-center min-h-screen">
+                    <div className="text-center">
+                        <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent mb-4"></div>
+                        <p className="text-xl font-semibold text-gray-700">Məlumatlar yüklənir...</p>
+                        <p className="text-sm text-gray-500 mt-2">Zəhmət olmasa gözləyin</p>
+                    </div>
+                </div>
+            </div>
         );
     }
 
@@ -97,7 +97,7 @@ const ApplicantsPage = () => {
                         <div className="text-center max-w-md">
                             <h2 className="text-2xl font-bold text-gray-800 mb-4">Xəta Baş Verdi</h2>
                             <p className="text-gray-600 mb-6">{error}</p>
-                            <Link 
+                            <Link
                                 to="/auth"
                                 className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
                             >
@@ -125,7 +125,7 @@ const ApplicantsPage = () => {
             <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 relative overflow-hidden">
                 <div className="absolute inset-0 bg-black/10"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 to-transparent"></div>
-                
+
                 {/* Decorative Elements */}
                 <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
                     <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
@@ -170,21 +170,19 @@ const ApplicantsPage = () => {
                                 <span className="text-sm text-gray-500">Görünüş:</span>
                                 <button
                                     onClick={() => setViewMode('grid')}
-                                    className={`p-2 rounded-lg transition-all duration-200 ${
-                                        viewMode === 'grid' 
-                                            ? 'bg-blue-100 text-blue-600' 
-                                            : 'text-gray-400 hover:text-gray-600 hover:bg-gray-100'
-                                    }`}
+                                    className={`p-2 rounded-lg transition-all duration-200 ${viewMode === 'grid'
+                                        ? 'bg-blue-100 text-blue-600'
+                                        : 'text-gray-400 hover:text-gray-600 hover:bg-gray-100'
+                                        }`}
                                 >
                                     <Grid3X3 className="w-5 h-5" />
                                 </button>
                                 <button
                                     onClick={() => setViewMode('list')}
-                                    className={`p-2 rounded-lg transition-all duration-200 ${
-                                        viewMode === 'list' 
-                                            ? 'bg-blue-100 text-blue-600' 
-                                            : 'text-gray-400 hover:text-gray-600 hover:bg-gray-100'
-                                    }`}
+                                    className={`p-2 rounded-lg transition-all duration-200 ${viewMode === 'list'
+                                        ? 'bg-blue-100 text-blue-600'
+                                        : 'text-gray-400 hover:text-gray-600 hover:bg-gray-100'
+                                        }`}
                                 >
                                     <List className="w-5 h-5" />
                                 </button>
@@ -217,8 +215,8 @@ const ApplicantsPage = () => {
                                     Namizədlər
                                 </h2>
                                 <p className="text-gray-600 mt-2">
-                                    {filteredApplicants.length > 0 
-                                        ? `${filteredApplicants.length} namizəd tapıldı` 
+                                    {filteredApplicants.length > 0
+                                        ? `${filteredApplicants.length} namizəd tapıldı`
                                         : 'Heç bir namizəd tapılmadı'
                                     }
                                 </p>
@@ -243,7 +241,7 @@ const ApplicantsPage = () => {
                                         {searchTerm ? 'Axtarış nəticəsi tapılmadı' : 'Heç bir namizəd profili mövcud deyil'}
                                     </h3>
                                     <p className="text-gray-500 max-w-md">
-                                        {searchTerm 
+                                        {searchTerm
                                             ? 'Axtarış kriteriyalarınızı dəyişdirərək yenidən cəhd edin'
                                             : 'Hazırda heç bir ictimai namizəd profili mövcud deyil'
                                         }
@@ -255,15 +253,14 @@ const ApplicantsPage = () => {
                                 </div>
                             </div>
                         ) : (
-                            <div className={`grid gap-8 ${
-                                viewMode === 'grid' 
-                                    ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' 
-                                    : 'grid-cols-1'
-                            }`}>
+                            <div className={`grid gap-8 ${viewMode === 'grid'
+                                ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+                                : 'grid-cols-1'
+                                }`}>
                                 {filteredApplicants.map((applicant) => (
-                                    <ApplicantCard 
-                                        key={applicant._id} 
-                                        applicant={applicant} 
+                                    <ApplicantCard
+                                        key={applicant._id}
+                                        applicant={applicant}
                                         viewMode={viewMode}
                                         defaultProfilePicture={defaultProfilePicture}
                                     />
@@ -286,8 +283,8 @@ const ApplicantCard = ({ applicant, viewMode, defaultProfilePicture }) => {
                     <div className="relative flex-shrink-0">
                         <div className="w-20 h-20 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-gray-200 flex items-center justify-center overflow-hidden group-hover:border-blue-300 transition-colors duration-300">
                             <img
-                                src={applicant.profilePicture 
-                                    ? `http://192.168.100.52:5000${applicant.profilePicture}` 
+                                src={applicant.profilePicture
+                                    ? `https://job-server-tcq9.onrender.com${applicant.profilePicture}`
                                     : defaultProfilePicture
                                 }
                                 alt={`${applicant.firstName} ${applicant.lastName}`}
@@ -296,7 +293,7 @@ const ApplicantCard = ({ applicant, viewMode, defaultProfilePicture }) => {
                         </div>
                         <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
-                    
+
                     <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between">
                             <div>
@@ -316,11 +313,11 @@ const ApplicantCard = ({ applicant, viewMode, defaultProfilePicture }) => {
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div className="flex items-center space-x-2">
                                 {applicant.resume && (
                                     <a
-                                        href={`http://192.168.100.52:5000${applicant.resume}`}
+                                        href={`https://job-server-tcq9.onrender.com${applicant.resume}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="group/btn flex items-center space-x-1 px-3 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors duration-200"
@@ -352,8 +349,8 @@ const ApplicantCard = ({ applicant, viewMode, defaultProfilePicture }) => {
                     <div className="relative mb-4">
                         <div className="w-20 h-20 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-gray-200 flex items-center justify-center overflow-hidden group-hover:border-blue-300 transition-colors duration-300">
                             <img
-                                src={applicant.profilePicture 
-                                    ? `http://192.168.100.52:5000${applicant.profilePicture}` 
+                                src={applicant.profilePicture
+                                    ? `https://job-server-tcq9.onrender.com${applicant.profilePicture}`
                                     : defaultProfilePicture
                                 }
                                 alt={`${applicant.firstName} ${applicant.lastName}`}
@@ -362,7 +359,7 @@ const ApplicantCard = ({ applicant, viewMode, defaultProfilePicture }) => {
                         </div>
                         <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
-                    
+
                     <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors duration-200">
                         <Link to={`/applicants/${applicant.userId._id}`} className="hover:underline">
                             {applicant.firstName} {applicant.lastName}
@@ -404,7 +401,7 @@ const ApplicantCard = ({ applicant, viewMode, defaultProfilePicture }) => {
                 <div className="flex space-x-2 pt-2">
                     {applicant.resume && (
                         <a
-                            href={`http://192.168.100.52:5000${applicant.resume}`}
+                            href={`https://job-server-tcq9.onrender.com${applicant.resume}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="group/btn flex-1 flex items-center justify-center space-x-2 px-3 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors duration-200"
