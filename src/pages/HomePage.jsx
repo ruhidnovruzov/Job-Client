@@ -123,7 +123,7 @@ const HomePage = () => {
             </div>
 
             {/* Main Content */}
-            <div className="container mx-auto px-4 py-12 relative -mt-8">
+            <div className="container mx-auto px-0 md:px-4  py-12 relative -mt-8">
                 {/* Filter Section */}
                 <div className="bg-white rounded-2xl shadow-2xl border border-gray-100/50 backdrop-blur-sm mb-12 overflow-hidden">
                     <div className="bg-gradient-to-r from-gray-50 to-blue-50 px-8 py-6 border-b border-gray-200">
@@ -133,7 +133,7 @@ const HomePage = () => {
                         </h2>
                         <p className="text-gray-600 mt-2">İstədiyiniz iş elanlarını tapmaq üçün filterləri istifadə edin</p>
                     </div>
-                    <div className="p-8">
+                    <div className="md:p-8 p-4">
                         <JobFilterForm
                             filters={filters}
                             onChange={handleFilterChange}
@@ -158,7 +158,7 @@ const HomePage = () => {
 
                         </div>
                     </div>
-                    <div className="p-8">
+                    <div className="md:p-8 p-4">
                         <JobList jobs={jobs} />
                     </div>
                 </div>
