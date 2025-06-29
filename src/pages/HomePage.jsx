@@ -51,15 +51,15 @@ const HomePage = () => {
 
     if (loading) {
         return (
-           <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent mb-4"></div>
-            <p className="text-xl font-semibold text-gray-700">Məlumatlar yüklənir...</p>
-            <p className="text-sm text-gray-500 mt-2">Zəhmət olmasa gözləyin</p>
-          </div>
-        </div>
-      </div>
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+                <div className="flex items-center justify-center min-h-screen">
+                    <div className="text-center">
+                        <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent mb-4"></div>
+                        <p className="text-xl font-semibold text-gray-700">Məlumatlar yüklənir...</p>
+                        <p className="text-sm text-gray-500 mt-2">Zəhmət olmasa gözləyin</p>
+                    </div>
+                </div>
+            </div>
         );
     }
 
@@ -74,7 +74,7 @@ const HomePage = () => {
                         <div className="text-center max-w-md">
                             <h2 className="text-2xl font-bold text-gray-800 mb-4">Xəta Baş Verdi</h2>
                             <p className="text-gray-600 mb-6">{error}</p>
-                            <button 
+                            <button
                                 onClick={fetchJobs}
                                 className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
                             >
@@ -93,7 +93,7 @@ const HomePage = () => {
             <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 relative overflow-hidden">
                 <div className="absolute inset-0 bg-black/10"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 to-transparent"></div>
-                
+
                 {/* Decorative Elements */}
                 <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
                     <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
@@ -155,7 +155,7 @@ const HomePage = () => {
                                     {jobs.length > 0 ? `${jobs.length} iş elanı tapıldı` : 'Heç bir iş elanı tapılmadı'}
                                 </p>
                             </div>
-                         
+
                         </div>
                     </div>
                     <div className="p-8">

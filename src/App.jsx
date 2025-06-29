@@ -18,139 +18,149 @@ import ApplicantDetailPage from './pages/ApplicantDetailPage';
 import AdminDashboardPage from './pages/Admin/AdminDashboardPage';
 import CompanyDashboard from './pages/Company/CompanyDashboard';
 import EditJob from './pages/Company/EditJob';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 function App() {
   return (
     <Router>
       <AuthProvider>
         <Routes>
           {/* Public Routes - Hər kəs daxil ola bilər */}
-          <Route 
-            path="/" 
+          <Route
+            path="/"
             element={
               <DefaultLayout>
                 <HomePage />
               </DefaultLayout>
-            } 
+            }
           />
-          
-          <Route 
-            path="/auth" 
+
+          <Route
+            path="/reset-password/:token"
+            element={
+              <DefaultLayout>
+                <ResetPasswordPage />
+              </DefaultLayout>
+            }
+          />
+
+          <Route
+            path="/auth"
             element={
               <DefaultLayout>
                 <AuthPage />
               </DefaultLayout>
-            } 
+            }
           />
 
           {/* Job Detail - Public route (login olmadan da baxıla bilər) */}
-          <Route 
-            path="/jobs/:id" 
+          <Route
+            path="/jobs/:id"
             element={
               <DefaultLayout>
                 <JobDetailPage />
               </DefaultLayout>
-            } 
+            }
           />
 
           {/* Reset Password - Public route */}
-          <Route 
-            path="/reset-password/:token" 
+          <Route
+            path="/reset-password/:token"
             element={
               <DefaultLayout>
                 <AuthPage />
               </DefaultLayout>
-            } 
+            }
           />
 
           {/* Protected Routes - Login tələb olunur */}
-          <Route 
-            path="/applicants" 
+          <Route
+            path="/applicants"
             element={
               <ProtectedRoute requireAuth={true}>
                 <DefaultLayout>
                   <ApplicantsPage />
                 </DefaultLayout>
               </ProtectedRoute>
-            } 
+            }
           />
 
-          <Route 
-            path="/applicants/:id" 
+          <Route
+            path="/applicants/:id"
             element={
               <ProtectedRoute requireAuth={true}>
                 <DefaultLayout>
                   <ApplicantDetailPage />
                 </DefaultLayout>
               </ProtectedRoute>
-            } 
+            }
           />
 
           {/* Applicant Only Routes - Yalnız iş axtaranlar */}
-          <Route 
-            path="/applicant-dashboard" 
+          <Route
+            path="/applicant-dashboard"
             element={
               <ProtectedRoute allowedRoles={['applicant']}>
                 <DefaultLayout>
                   <ApplicantDashboardPage />
                 </DefaultLayout>
               </ProtectedRoute>
-            } 
+            }
           />
 
           {/* Company Only Routes - Yalnız şirkətlər */}
-          <Route 
-            path="/post-job" 
+          <Route
+            path="/post-job"
             element={
               <ProtectedRoute allowedRoles={['company']}>
                 <DefaultLayout>
                   <PostJobPage />
                 </DefaultLayout>
               </ProtectedRoute>
-            } 
+            }
           />
 
-          <Route 
-            path="/company-dashboard" 
+          <Route
+            path="/company-dashboard"
             element={
               <ProtectedRoute allowedRoles={['company']}>
                 <DefaultLayout>
                   <CompanyDashboard />
                 </DefaultLayout>
               </ProtectedRoute>
-            } 
+            }
           />
 
-          <Route 
-            path="/edit-job/:id" 
+          <Route
+            path="/edit-job/:id"
             element={
               <ProtectedRoute allowedRoles={['company']}>
                 <DefaultLayout>
                   <EditJob />
                 </DefaultLayout>
               </ProtectedRoute>
-            } 
+            }
           />
 
           {/* Admin Only Routes - Yalnız adminlər */}
-          <Route 
-            path="/admin-dashboard" 
+          <Route
+            path="/admin-dashboard"
             element={
               <ProtectedRoute allowedRoles={['admin']}>
                 <DefaultLayout>
                   <AdminDashboardPage />
                 </DefaultLayout>
               </ProtectedRoute>
-            } 
+            }
           />
 
           {/* 404 Route - Tapılmayan səhifələr üçün */}
-          <Route 
-            path="*" 
+          <Route
+            path="*"
             element={
               <DefaultLayout>
                 <NotFoundPage />
               </DefaultLayout>
-            } 
+            }
           />
         </Routes>
       </AuthProvider>
@@ -205,7 +215,7 @@ const NotFoundPage = () => (
         <div className="text-center">
           <h2 className="text-3xl font-bold text-gray-800 mb-4">Səhifə Tapılmadı</h2>
           <p className="text-gray-600 mb-6">Axtardığınız səhifə mövcud deyil və ya silinib.</p>
-          <button 
+          <button
             onClick={() => window.location.href = '/'}
             className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
           >
